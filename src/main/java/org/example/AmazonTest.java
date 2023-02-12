@@ -25,7 +25,7 @@ public class AmazonTest {
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         WebDriver driver = new ChromeDriver(chromeOptions);
 
-        //Navigate to Url
+        //Navigate to URI
         driver.get("https://www.amazon.com");
         //Expand to full screen
         driver.manage().window().maximize();
@@ -36,7 +36,7 @@ public class AmazonTest {
         driver.findElement(By.id("nav-search-submit-button")).click();
         //Select first hat
         driver.findElement(By.xpath("//span[@class='a-size-base-plus a-color-base a-text-normal']")).click();
-        //Set quantity and add to cart
+        //Set quantity and add to a cart
         /** Forced to use a cycle, as some positions
          * require choosing the size of the hat
          */
@@ -54,7 +54,7 @@ public class AmazonTest {
         //Go to the cart
         driver.findElement(By.id("nav-cart-count")).click();
         String priceTextMan = driver.findElement(By.xpath("//div[@class='sc-item-price-block']//span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap sc-product-price a-text-bold']")).getText().substring(1);
-         //Assert prices
+        //Assert prices
         Float priceMan = Float.valueOf(priceTextMan).floatValue();
         float totalPriceMan = quantityMan * priceMan;
         String totalPriceManFromCart = driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-activecart']/span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap']")).getText();
@@ -70,7 +70,7 @@ public class AmazonTest {
         driver.findElement(By.id("nav-search-submit-button")).click();
         //Select first hat
         driver.findElement(By.xpath("//span[@class='a-size-base-plus a-color-base a-text-normal']")).click();
-        //Set quantity and add to cart
+        //Set quantity and add to the cart
         try {
             driver.findElement(By.xpath("//div[@class='a-row a-spacing-base']//span[@class='a-dropdown-label']")).click();
             driver.findElement(By.xpath("//li[@role='option']/a[normalize-space(text())='" + quantityWoman + "']")).click();
@@ -84,7 +84,7 @@ public class AmazonTest {
         String priceDollarWoman = driver.findElement(By.xpath("//div[@class='a-section a-spacing-none aok-align-center']//span[@class='a-price-whole']")).getText();
         String priceCentWoman = driver.findElement(By.xpath("//div[@class='a-section a-spacing-none aok-align-center']//span[@class='a-price-fraction']")).getText();
         driver.findElement(By.xpath("//div[@class='a-button-stack']//input[@id='add-to-cart-button']")).click();
-       //Go to cart
+        //Go to the cart
         driver.findElement(By.id("nav-cart-count")).click();
         //Assert prices
         String priceTextWoman = priceDollarWoman + "." + priceCentWoman;
